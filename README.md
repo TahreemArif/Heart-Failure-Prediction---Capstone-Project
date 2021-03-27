@@ -19,9 +19,11 @@ The *Heart Failure dataset* is first downloaded from this [url](https://www.kagg
 
 The registered dataset can be seen in the following screenshot:
 
-![Dataset](screenshots/registered_dataset.png)
+![Dataset](screenshots/registered-dataset.png)
 
-![Dataset](screenshots/dataset_explore.png)
+The following screenshot represents the first few records of the dataset, along-with the details such as number of rows and columns in the dataset.
+
+![Dataset](screenshots/dataset-explore.png)
 
 After registering the dataset in Azure ML Studio, it can be accessed in the code as follows: 
 ```python
@@ -48,23 +50,27 @@ The settings and configuration for AutoML run are as follows:
 
 ### Results
 
-The best model obtained from the AutoML run is voting ensemble which gave an overall accuracy of 87.1 %. 
-The screenshots of the best AutoML model are :
+The best model obtained from the AutoML run is voting ensemble which gave an overall accuracy of 87.6 %. 
 
-![logs](screenshots/automl_experiment_completed.png)
+The following screenshot represents the completed status of the AutoML experiment, along-with the best-run ID, best run algorithm, maximum accuracy achieved, and the deployment status of the best model:
 
-![logs](screenshots/automl_metrics.png)
+![AutoML](screenshots/automl-exp-completed.png)
 
-The various models generated during AutoML run are:
+The details of the best AutoML model, including the algorithm name, maximum accuracy achieved by model, registered models, and deployment status of the model, along with other run metrics, are shown below:
 
-![logs](screenshots/automl_models.png)
+![AutoML](screenshots/run-metrics-best-automl-model.png)
 
-The run details widget for AutoML run is attached below:
+During AutoML experiment, various different models are trained. Some of these models are shown below:
 
-![logs](screenshots/automl_rundetails.png)
+![AutoML](screenshots/automl-models.png)
+
+The run details widget for AutoML run showing that the run is completed, is attached below:
+
+![logs](screenshots/automl-rundetails.png)
 
 The properties of the best automl model are:
-```
+
+```commandline
 Best AutoML Run Model : Pipeline(memory=None,
          steps=[('datatransformer',
                  DataTransformer(enable_dnn=None, enable_feature_sweeping=None,
@@ -74,26 +80,25 @@ Best AutoML Run Model : Pipeline(memory=None,
                                  is_cross_validation=None,
                                  is_onnx_compatible=None, logger=None,
                                  observer=None, task=None, working_dir=None)),
-                                 ('prefittedsoftvotingclassifier',
-                                 coef0=0.0,
-                                 decision_function_shape='ovr',
-                                 degree=3,
-                                 gamma='scale',
-                                 kernel='rbf',
-                                 max_iter=-1,
-                                 probability=True,
+                                ('prefittedsoftvotingclassifier',...
+                                 min_samples_leaf=0.01,
+                                 min_samples_split=0.01,
+                                 min_weight_fraction_leaf=0.0,
+                                 n_estimators=10,
+                                 n_jobs=1,
+                                 oob_score=False,
                                  random_state=None,
-                                 shrinking=True,
-                                 tol=0.001,
-                                 verbose=False))],
+                                 verbose=0,
+                                 warm_start=False))],
                        verbose=False))],
                                  flatten_transform=None,
-                                 weights=[0.16666666666666666,
-                                          0.16666666666666666,
-                                          0.16666666666666666,
-                                          0.16666666666666666,
-                                          0.16666666666666666,
-                                          0.16666666666666666]))],
+                                 weights=[0.14285714285714285,
+                                          0.14285714285714285,
+                                          0.14285714285714285,
+                                          0.14285714285714285,
+                                          0.14285714285714285,
+                                          0.14285714285714285,
+                                          0.14285714285714285]))],
                                  verbose=False)
 ```
 
@@ -117,31 +122,35 @@ The best hyperdrive run gave an overall accuracy of 81.7 % .The value of *'C'* i
 
 The screenshot of the run details widget is as follows:
 
-![logs](screenshots/rundetails_hyperdrive.png)
+![Hyperdrive](screenshots/hyperdrive-rundetails.png)
 
-The visual representation of accuracy among various runs:
+The visual representation of accuracy among various runs, is shown in the following screenshot:
 
-![logs](screenshots/hyperdrive_exp_childruns.png)
+![Hyperdrive](screenshots/hyperdrive-acc-chart.png)
 
-Below is the screenshot for best hyperdrive run:
+The screenshot below represents the various Hyperdrive runs generated during the Hyperdrive experiment:
 
-![logs](screenshots/hyperdrive_model1.png)
+![Hyperdrive](screenshots/hyperdrive-childruns.png)
 
-###Future Improvements:
+The following screenshot represents the details of the best Hyperdrive model, including its hyperparameters, maximum achieved accuracy, run ID and the registered model: 
+
+![Hyperdrive](screenshots/hyperdrive-best-model-details.png)
+
+### Future Improvements:
 - Feature engineering can be applied before training to keep only the useful features
 - Other classification algorithms such as Random Forest, SVM , KNN can be used
 
 ## Model Deployment
 
-The best model obtained from the AutoML run, i.e., VotingEnsemble model gave an overall accuracy of 87.1 %, which is better than the accuracy of the best hyperdrive run model accuracy, i.e., 81.7%. So, VotingEnsemble is registered as *automl_model* and deployed as a webservice on Azure Container Instance. The screenshots for the registered and deployed models are attached below:
+The best model obtained from the AutoML run, i.e., VotingEnsemble model gave an overall accuracy of 87.6 %, which is better than the accuracy of the best hyperdrive run model accuracy, i.e., 81.7%. So, VotingEnsemble is registered as *automl_model* and deployed as a webservice on Azure Container Instance. 
 
-![logs](screenshots/registered_automl_model.png)
+The screenshot below represents the registered AutoML model:
 
-![logs](screenshots/register_model_details.png)
+![Deployment](screenshots/registered-automl-model.png)
 
-![logs](screenshots/register_model_endpoint.png)
+The screenshot below represents the deployed model web-service, including its deployment state, deployed model ID, and the Rest Endpoint to access the deployed model:
 
-![logs](screenshots/automl_deploy.png)
+![Deployment](screenshots/deployed-automl-model.png)
 
 The following is the sample data for request:
 ```python
@@ -197,11 +206,15 @@ response.json()
 
 ## Screen Recording
 
-The screencast of the project can be accessed [here](https://youtu.be/6HT-LYBnSnk).
+The screencast of the project can be accessed [here](https://youtu.be/cVtwiHCakbA).
 
 ## Standout Suggestions
-I have attempted the standout suggestion of enabling application insights for the deployed webservice. The screenshots of logs obtained through code are attached below: 
+I have attempted the standout suggestion of enabling application insights for the deployed webservice. 
 
-![logs](screenshots/automl_code_logs.png)
+The following screenshot represents the web-service with **Application Insights enabled** set to *true*.
 
-![logs](screenshots/automl_deployment_logs.png)
+![logs](screenshots/deployed-model-with-app-insights.png)
+
+The screenshots of logs obtained through code is attached below: 
+
+![logs](screenshots/service-logs.png)
